@@ -1,0 +1,95 @@
+:root {
+  --color-ball: #5cabff;
+  --color-bg: #000;
+  --color-rope: #c7c7c7;
+  --angle-ball: 20deg;
+}
+
+body {
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  overflow: hidden;
+}
+
+.scene {
+  position: absolute;
+
+  .ball {
+    position: absolute;
+    background: radial-gradient(circle at 0.6em 0.6em, var(--color-ball), #000);
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    transform-origin: 50% -52vh;
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: 4px;
+      height: 52vh;
+      background-color: var(--color-rope);
+      left: 1em;
+      top: -52vh;
+    }
+  }
+
+  .first {
+    transform: translateX(-5em);
+    animation: first 1s alternate ease-in infinite;
+  }
+  .second {
+    transform: translateX(-3em);
+    animation: second 1s alternate ease-in infinite;
+  }
+  .third {
+    transform: translateX(-1em);
+  }
+  .fourth {
+    transform: translateX(1em);
+    animation: fourth 1s alternate ease-out infinite;
+  }
+  .fifth {
+    transform: translateX(3em);
+    animation: fifth 1s alternate ease-out infinite;
+  }
+
+  @keyframes first {
+    0% {
+      transform: translateX(-5em) rotate(var(--angle-ball));
+    }
+    50% {
+      transform: translateX(-5em) rotate(0deg);
+    }
+  }
+
+  @keyframes second {
+    0% {
+      transform: translateX(-3em) rotate(var(--angle-ball));
+    }
+    50% {
+      transform: translateX(-3em) rotate(0deg);
+    }
+  }
+
+  @keyframes fourth {
+    50% {
+      transform: translateX(1em) rotate(0deg);
+    }
+    100% {
+      transform: translateX(1em) rotate(calc(-1 * var(--angle-ball)));
+    }
+  }
+
+  @keyframes fifth {
+    50% {
+      transform: translateX(3em) rotate(0deg);
+    }
+    100% {
+      transform: translateX(3em) rotate(calc(-1 * var(--angle-ball)));
+    }
+  }
+}
